@@ -131,12 +131,13 @@ class PLANPAGOSController extends Controller
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
+	public function actionAdmin($id)
 	{
 		$model=new PLANPAGOS('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['PLANPAGOS']))
 			$model->attributes=$_GET['PLANPAGOS'];
+			$model->K_ID_CREDITO=$id;
 
 		$this->render('admin',array(
 			'model'=>$model,

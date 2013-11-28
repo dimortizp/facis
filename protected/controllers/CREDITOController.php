@@ -74,7 +74,7 @@ class CREDITOController extends Controller {
 
                 if ($model->save()) {
                     $this->__createPlanPagos($model->K_ID_CREDITO);
-                    //$this->redirect(array('view', 'id' => $model->K_ID_CREDITO));
+                    $this->redirect(array('planpagos/admin', 'id' => $model->K_ID_CREDITO));
                 }
             }
 
