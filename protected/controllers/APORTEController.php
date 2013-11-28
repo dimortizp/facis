@@ -30,7 +30,7 @@ class APORTEController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete', 'procedure'),
+                'actions' => array('create', 'update', 'admin', 'delete', 'procedure','reporte'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -173,6 +173,20 @@ class APORTEController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
+        try {
+            $model = new APORTE('search');
+            $model->unsetAttributes();  // clear any default values
+            if (isset($_GET['APORTE']))
+                $model->attributes = $_GET['APORTE'];
+
+            $this->render('admin', array(
+                'model' => $model,
+            ));
+        } catch (Exception $e) {
+            throw new CHttpException(500, 'No tiene permisos para realizar esta acción.');
+        }
+    }
+    public function actionReporte() {
         try {
             $model = new APORTE('search');
             $model->unsetAttributes();  // clear any default values

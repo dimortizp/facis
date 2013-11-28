@@ -187,4 +187,14 @@ class PAGOController extends Controller {
         }
     }
 
+    private function __updateSaldoCredito($idCredito){
+        $command = Yii::app()->db->createCommand('
+                            DECLARE
+                            P_K_ID_CREDITO CREDITO.K_ID_CREDITO%TYPE:='.$idCredito.';
+                            begin
+                            pk_creditos.PR_CREAR_PLANPAGOS(P_K_ID_CREDITO);
+                            end;         
+                    ');
+        $command->execute();
+    }
 }
